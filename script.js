@@ -31,6 +31,7 @@ function showNumber() {
 }
 
 function operate() {
+  if (currentNumber.textContent === "-" && this.textContent === "-") return;
   if (currentNumber.textContent === "" && this.textContent === "-") {
     currentNumber.textContent = "-";
     return;
