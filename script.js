@@ -41,16 +41,67 @@ function operate() {
   currentNumber.textContent = "";
 }
 
+function clearBar() {
+  currentNumber.textContent = "";
+  previosNumber.textContent = "";
+  mathSign.textContent = "";
+}
+
+function backNum() {}
+
+function showResult() {
+  let li = document.createElement("li");
+  let a = Number(currentNumber.textContent);
+  let b = Number(previosNumber.textContent);
+  let c = 0;
+
+  switch (mathSign.textContent) {
+    case "+":
+      result += a + b;
+      break;
+
+    case "-":
+      result += b - a;
+      break;
+
+    case "/":
+      result += b / a;
+      break;
+
+    case "*":
+      result += a * b;
+      break;
+    default:
+  }
+
+  li.textContent +=
+    previosNumber.textContent +
+    " " +
+    mathSign.textContent +
+    " " +
+    currentNumber.textContent +
+    "=" +
+    result;
+
+  history_bar.appendChild(li);
+
+  previosNumber.textContent = "";
+  mathSign.textContent = "";
+  currentNumber.textContent = "";
+  currentNumber.textContent += result;
+  result = "";
+}
+
 number.forEach((button) => button.addEventListener("click", showNumber));
 
 operator.forEach((button) => button.addEventListener("click", operate));
 
 clear.addEventListener("click", function () {
-  clear();
+  clearBar();
 });
 
 back.addEventListener("click", function () {
-  back();
+  backNum();
 });
 
 equal.addEventListener("click", function () {
