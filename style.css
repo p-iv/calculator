@@ -56,8 +56,8 @@
 .double {
   grid-area: 4 / 4 / 6 / 4;
 }
-.triple {
-  grid-area: 5 / 1 / 5 / 4;
+.zero {
+  grid-area: 5 / 1 / 5 / 3;
 }
 .operator {
   background-color: #e91143;
@@ -102,9 +102,8 @@
 }
 .history {
   width: 150px;
-  height: 550px;
+  height: 500px;
   background-color: #fff;
-  border-radius: 30px;
   margin-left: 20px;
   text-align: start;
 }
@@ -121,4 +120,35 @@ ul li {
   text-align: center;
   background-color: #000;
   color: #fff;
+}
+.history-container {
+  display: flex;
+  flex-direction: column;
+}
+.clear-history {
+  width: 150px;
+  height: 40px;
+  border: 0;
+  border-radius: 0 0 30px 30px;
+  left: 25px;
+  background-color: #fff;
+  font-size: 1.2rem;
+  margin-left: 20px;
+}
+.clear-history:hover {
+  background-color: #eee;
+  cursor: pointer;
+}
+.clear-history:active {
+  background-color: #fff;
+}
+.history-title {
+  width: 150px;
+  height: 40px;
+  background-color: #fff;
+  margin-left: 20px;
+  text-align: center;
+  border-radius: 30px 30px 0 0;
+  border-bottom: 2px solid black;
+  padding-top: 10px;
 }

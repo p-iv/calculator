@@ -18,10 +18,16 @@ const equal = document.querySelector(".equal");
 
 const history_bar = document.querySelector(".history-bar");
 
+const clear_history = document.querySelector(".clear-history");
+
 let result = "";
 
 function showNumber() {
+  if (this.textContent === "." && currentNumber.textContent.includes("."))
+    return;
   currentNumber.textContent += this.textContent;
+
+  saveData();
 }
 
 function operate() {
@@ -39,21 +45,20 @@ function operate() {
   previosNumber.textContent += currentNumber.textContent;
   mathSign.innerHTML += this.textContent;
   currentNumber.textContent = "";
+  saveData();
 }
 
 function clearBar() {
   currentNumber.textContent = "";
   previosNumber.textContent = "";
   mathSign.textContent = "";
+  saveData();
 }
-
-function backNum() {}
 
 function showResult() {
   let li = document.createElement("li");
   let a = Number(currentNumber.textContent);
   let b = Number(previosNumber.textContent);
-  let c = 0;
 
   switch (mathSign.textContent) {
     case "+":
@@ -71,6 +76,8 @@ function showResult() {
     case "*":
       result += a * b;
       break;
+    case "^":
+      result += b ** a;
     default:
   }
 
@@ -90,20 +97,29 @@ function showResult() {
   currentNumber.textContent = "";
   currentNumber.textContent += result;
   result = "";
+  saveData();
 }
+
+function clearHistory() {
+  history_bar.innerHTML = "";
+}
+
+function saveData() {
+  localStorage.setItem("data", history_bar.innerHTML);
+}
+
+function showData() {
+  history_bar.innerHTML = localStorage.getItem("data");
+}
+
+showData();
 
 number.forEach((button) => button.addEventListener("click", showNumber));
 
 operator.forEach((button) => button.addEventListener("click", operate));
 
-clear.addEventListener("click", function () {
-  clearBar();
-});
+clear.addEventListener("click", clearBar);
 
-back.addEventListener("click", function () {
-  backNum();
-});
+equal.addEventListener("click", showResult);
 
-equal.addEventListener("click", function () {
-  showResult();
-});
+clear_history.addEventListener("click", clearHistory);
